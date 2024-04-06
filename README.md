@@ -7,6 +7,11 @@ Project consists of a simple PowerShell script that walks the user through "zero
 <br />
 
 
+
+```sql
+SELECT DISTINCT(user_name) FROM some_table
+```
+
 <h2>Languages and Utilities Used</h2>
 
 - <b>PowerShell</b> 
