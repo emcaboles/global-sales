@@ -11,7 +11,21 @@ Project consists of a simple PowerShell script that walks the user through "zero
 ```sql
 SELECT DISTINCT(user_name) FROM some_table
 ```
+<details>
 
+<summary>Tips for collapsed sections</summary>
+
+### You can add a header
+
+You can add text within a collapsed section. 
+
+You can add an image or a code block, too.
+
+```ruby
+   puts "Hello World"
+```
+
+</details>
 <h2>Languages and Utilities Used</h2>
 
 - <b>PowerShell</b> 
