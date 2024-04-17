@@ -5,13 +5,15 @@
 ## Table of Contents
 **INSERT LINKS**
 + <a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario">Scenario</a>
-+ Data Extraction using SQL
-+ Data Cleaning, Transformation, and Visualization using Power Query and Power BI
++ Data Extraction (SQL)
++ Data Cleaning and Visualization (Power Query, Power BI)
 + Data Analysis and Results
 + References
 + Extras
 
 ## Scenario
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+
 You are a data analyst at a global online store. The sales department needs your help in creating a report regarding the 2023 sales and the sales manager asked you to get the following data from you company's database using SQL.
 
 1.  Find the top 5 countries with the highest total revenue from online orders.
@@ -49,7 +51,9 @@ However, there is one catch. The 2024 sales and their corresponding details have
 
 Since the data is manually recorded, the sales department also wants you to check if there are possible errors or outliers in the data.
 
-## Data Extraction using SQL
+## Data Extraction (SQL)
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+
 The database has the following tables and relationships:
 **INSERT ERD**
 
@@ -421,11 +425,16 @@ ORDER BY Sales DESC;
   Insert Table
 </details>
 
-## Data Cleaning, Transformation, and Visualization using Power Query and Power BI
+## Data Cleaning and Visualization (Power Query, Power BI)
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+
 
 ## Data Analysis and Results
 
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+
 ## References
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
 
 ## Extras
-
+<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
