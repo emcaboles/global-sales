@@ -4,7 +4,7 @@
 
 ## Table of Contents
 **INSERT LINKS**
-+ Scenario
++ <a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario">Scenario</a>
 + Data Extraction using SQL
 + Data Cleaning, Transformation, and Visualization using Power Query and Power BI
 + Data Analysis and Results
