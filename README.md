@@ -1,15 +1,15 @@
 # Global Online Store Sales Analysis
 ## Quick links
-### <a href="https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" target="_blank">Sales Dashboard</a>
+ [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
+ [SQL Queries](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9)
+<!--[Data Analysis](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) -->
 
 ## Table of Contents
-**INSERT LINKS**
-+ <a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario">Scenario</a>
-+ Data Extraction (SQL)
-+ Data Cleaning and Visualization (Power Query, Power BI)
-+ Data Analysis and Results
-+ References
-+ Extras
++ [Scenario](https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario)
++ [Data Extraction (SQL)](https://github.com/emcaboles/global-sales?tab=readme-ov-file#data-extraction-sql)
++  [ETL and Visualization (Power Query, Power BI)](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#etl-and-visualization-power-query-power-bi)
++ [Data Analysis and Results](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#data-cleaning-and-visualization-power-query-power-bi)
+<!--+ Extras-->
 
 ## Scenario
 <a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
@@ -52,8 +52,9 @@ However, there is one catch. The 2024 sales and their corresponding details have
 Since the data is manually recorded, the sales department also wants you to check if there are possible errors or outliers in the data.
 
 ## Data Extraction (SQL)
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
 
+### Data Tables and the ERD
 The database has the following tables and relationships:
 **INSERT ERD**
 
@@ -76,7 +77,7 @@ SELECT 'shippers', COUNT(*) FROM shippers
 UNION ALL
 SELECT 'suppliers', COUNT(*) FROM suppliers;
 ```
-**INSERT RESULTS USING  //DETAILS//**
+***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
   Insert Table
@@ -86,7 +87,7 @@ SELECT 'suppliers', COUNT(*) FROM suppliers;
 SELECT * FROM categories
 LIMIT 10;
 ```
-**INSERT RESULTS USING  //DETAILS//**
+***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
   Insert Table
@@ -155,7 +156,8 @@ LIMIT 10;
   Insert Table
 </details>
 
-To save space, results for the next queries are truncated to show only the first 10 results, unless otherwise specified.
+### Requested Data Queries
+To save space, results for the next queries are truncated to show only the first 10 results, unless otherwise shown.
 
 1.  Find the top 5 countries with the highest total revenue from online orders.
 ```sql
@@ -178,7 +180,7 @@ LIMIT 5;
   Insert Table
 </details>
 
-2.  List the sales per region (North America, South America, Europe).
+3.  List the sales per region (North America, South America, Europe).
 ```sql
 WITH CustomerPerContinent AS (
 	SELECT
@@ -250,10 +252,10 @@ ORDER BY Country ASC;
 
 5.  Identify the top 10 products with the highest profit margin.
 * Assuming that the total revenue is equivalent to sales and all costs are already accounted for in the *Cost* column of the *products* table:
-&nbsp;&nbsp;&nbsp;&nbsp;Profit Margin = Sales - Cost of Goods Solds / Sales
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Price *x* Quantity  - Cost *x* Quantity / Price *x* Quantity
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Quantity *x* (Price-Cost)/ Quantity *x* Price
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Price-Cost / Price
+Profit Margin = Sales - Cost of Goods Solds / Sales \
+Profit Margin = Price *x* Quantity  - Cost *x* Quantity / Price *x* Quantity \
+Profit Margin = Quantity *x* (Price-Cost)/ Quantity *x* Price \
+Profit Margin = Price-Cost / Price
 ```sql
 SELECT
 	ProductName,
@@ -426,15 +428,130 @@ ORDER BY Sales DESC;
 </details>
 
 ## Data Cleaning and Visualization (Power Query, Power BI)
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
 
+### Extract, Transform, Load with Power Query
+#### Extraction
+To avoid enlarging the semantic model, only pertinent tables were loaded. SQL queries were also used to reduce the number of columns loaded in the model and to push most of the data transformation upstream.
+
+The following queries used are as follows:
+
+1. Customers Table
+```sql
+SELECT
+	CustomerID,
+	CustomerName,
+	City,
+	Country,
+	CASE
+		WHEN Country IN ('USA', 'Canada', 'Mexico') THEN 'North America'
+		WHEN Country IN ('Brazil', 'Venezuela', 'Argentina') THEN 'South America'
+		ELSE  'Europe'
+	END AS Continent
+FROM customers
+```
+2. Employees Table
+```sql
+SELECT
+	EmployeeID,
+	CONCAT_WS(' ', FirstName, LastName) AS 'FullName'
+FROM employees
+```
+To track the dates, a rolling calendar was created using the following formula:
+```PHP
+List.Dates(
+Source,
+Number.From(DateTime.LocalNow()) - Number.From(Source),
+#duration(1,0,0,0)
+)
+```
+#### Transformation
+For the 2024 sales data, the *orders* and *ordersdetails* excel files were loaded to Power Query and then appended with their database table counterparts.
+
+***INSERT PICTURE OF APPENDED QUERIES***
+
+#### Loading
+After transforming the data and making sure that all columns have proper data types, the tables were loaded to Power BI and connected in the Model View.
+
+***INSERT MODEL WITHOUT SLICER***
+
+### Power BI Report
+Since the Sales Department is interested in checking the YTD, QTD, MTD Sales, a DAX table was created to filter the rolling calendar table by YTD, QTD, and MTD.
+
+```PHP
+VAR TodayDate=TODAY()
+VAR YearStart=
+	CALCULATE(
+		STARTOFYEAR(fOrders_app[OrderDate]),
+		YEAR(fOrders_app[OrderDate]) = YEAR(TodayDate)
+		)
+
+VAR QuarterStart=
+	CALCULATE(
+		STARTOFQUARTER(fOrders_app[OrderDate]),
+		YEAR(fOrders_app[OrderDate]) = YEAR(TodayDate),
+		QUARTER(fOrders_app[OrderDate]) = QUARTER(TodayDate)
+	)
+
+VAR MonthStart=
+	CALCULATE(
+		STARTOFMONTH(fOrders_app[OrderDate]),
+		YEAR(fOrders_app[OrderDate]) = YEAR(TodayDate),
+		QUARTER(fOrders_app[OrderDate]) = QUARTER(TodayDate),
+		MONTH(fOrders_app[OrderDate]) = MONTH(TodayDate)
+	)
+
+VAR Result=
+	UNION(
+		ADDCOLUMNS(
+			CALENDAR(YearStart,TodayDate),
+			"Selection", "YTD",
+			"Order",1
+			),
+		ADDCOLUMNS(
+			CALENDAR(QuarterStart,TodayDate),
+			"Selection", "QTD",
+			"Order",2
+			),
+		ADDCOLUMNS(
+			CALENDAR(MonthStart,TodayDate),
+			"Selection", "MTD",
+			"Order",3
+			)
+	)
+
+RETURN Result
+```
+After creating the period DAX table, it was connected to the rolling calendar table. Hence, the final model is illustrated below.
+***INSERT FINAL MODEL***
+
+Three pages were created for the Sales Department's dashboard. The first page was dedicated to provide an overview of the business. The second page displayed the Sales Agents' Metrics while the third page showed the possibile outliers in the data using Power BI's built-in Anomaly Detection feature.
+
+***INSERT SCREENSHOTS OF DASHBOARD***
+
+For the complete dashboard and DAX formulas used, please refer to the attached pbix file. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
 
 ## Data Analysis and Results
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
 
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+Power BI detected 12 possible outliers based on the daily expected sales value.
+
+To allow users to check as to why certain points were considered outliers, product and customer tables were placed in the report so that users can drill down the contribution of each product and customer in terms of sales.
+
+For example, selecting the first anomaly point which occurred on the 8th of October, it can be seen product *Thüringer Rostbratwurst* accounted for 43.89% of the daily sales and that orders and sales for this product increased by 82% and 86%, respectively, compared to previous dates.
+
+Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the product, suggesting that there may be an increased demand for the it.
+
+However, it is worth noting that if there were no marketing campaigns made to push *Thüringer Rostbratwurst* to be sold to customers, there may be a need to check the sales invoices and records of customers who suddenly bought items they have never purchased before.
+
+Finally, to aid the Sales Department in creating an overview of the daily sales, a dynamic *Sales and Product Analysis* section was added in the report page.
+
+***INSERT SCREENSHOT OF DYNAMIC TEXT BOX***
+<!---
 
 ## References
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
 
 ## Extras
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
+-->
