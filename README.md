@@ -1,6 +1,6 @@
 # Global Online Store Sales Analysis
 ## Quick links
- [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
+ [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
  [SQL Queries](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9)
 <!--[Data Analysis](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) -->
 
@@ -77,21 +77,25 @@ SELECT 'shippers', COUNT(*) FROM shippers
 UNION ALL
 SELECT 'suppliers', COUNT(*) FROM suppliers;
 ```
+<!---
 ***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
   Insert Table
 </details>
+-->
 
  ```sql
 SELECT * FROM categories
 LIMIT 10;
 ```
+<!---
 ***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
   Insert Table
 </details>
+--->
 
 ```sql
 SELECT * FROM customers
@@ -529,7 +533,7 @@ Three pages were created for the Sales Department's dashboard. The first page wa
 
 ***INSERT SCREENSHOTS OF DASHBOARD***
 
-For the complete dashboard and DAX formulas used, please refer to the attached pbix file. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
+For the complete dashboard and DAX formulas used, please refer to the attached pbix file. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
 
 ## Data Analysis and Results
 [back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
@@ -540,7 +544,7 @@ To allow users to check as to why certain points were considered outliers, produ
 
 For example, selecting the first anomaly point which occurred on the 8th of October, it can be seen product *Thüringer Rostbratwurst* accounted for 43.89% of the daily sales and that orders and sales for this product increased by 82% and 86%, respectively, compared to previous dates.
 
-Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the product, suggesting that there may be an increased demand for the it.
+Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the products, suggesting that there may be an increased demand for the it. This is also supported by *Thüringer Rostbratwurst*'s  increasing daily sales trend, which is illustrated in the same page or via drill-through to the Sales Page.
 
 However, it is worth noting that if there were no marketing campaigns made to push *Thüringer Rostbratwurst* to be sold to customers, there may be a need to check the sales invoices and records of customers who suddenly bought items they have never purchased before.
 
