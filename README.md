@@ -2,9 +2,9 @@
 
 # Global Online Store Sales Analysis
 ## Quick links
- [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
+ [Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
  [SQL Queries](https://github.com/emcaboles/global-sales?tab=readme-ov-file#requested-data-queries)\
-[Data Analysis](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) 
+[Data Analysis](https://github.com/emcaboles/global-sales/blob/main/README.md#data-analysis) 
 
 ## Table of Contents
 + [Scenario](https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario)
