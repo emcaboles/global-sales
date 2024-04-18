@@ -3,14 +3,14 @@
 # Global Online Store Sales Analysis
 ## Quick links
  [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
- [SQL Queries](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9)
-<!--[Data Analysis](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) -->
+ [SQL Queries](https://github.com/emcaboles/global-sales?tab=readme-ov-file#requested-data-queries)\
+[Data Analysis](https://app.powerbi.com/view?r=eyJrIjoiNGYyMDNkNTQtMjk3OC00YjE5LTk1NTYtMGYyODcyNzExMDk0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) 
 
 ## Table of Contents
 + [Scenario](https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario)
 + [Data Extraction (SQL)](https://github.com/emcaboles/global-sales?tab=readme-ov-file#data-extraction-sql)
 +  [ETL and Visualization (Power Query, Power BI)](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#etl-and-visualization-power-query-power-bi)
-+ [Data Analysis and Results](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#data-cleaning-and-visualization-power-query-power-bi)
++ [Data Analysis](https://github.com/emcaboles/global-sales/blob/main/README.md#data-analysis)
 <!--+ Extras-->
 
 ## Scenario
@@ -432,7 +432,7 @@ ORDER BY Sales DESC;
 
 </details>
 
-## Data Cleaning and Visualization (Power Query, Power BI)
+## ETL and Visualization (Power Query, Power BI)
 [back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
 
 ### Extract, Transform, Load with Power Query
