@@ -1,3 +1,5 @@
+
+
 # Global Online Store Sales Analysis
 ## Quick links
  [Sales Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
@@ -56,7 +58,8 @@ Since the data is manually recorded, the sales department also wants you to chec
 
 ### Data Tables and the ERD
 The database has the following tables and relationships:
-**INSERT ERD**
+
+![ERD_new_amazon](https://github.com/emcaboles/global-sales/assets/160221619/6e86c4b8-5858-4b5a-a40e-ba34c8babdbb)
 
 To have an idea about the tables, the number of records and the structure of each table were checked. 
 
@@ -77,25 +80,20 @@ SELECT 'shippers', COUNT(*) FROM shippers
 UNION ALL
 SELECT 'suppliers', COUNT(*) FROM suppliers;
 ```
-<!---
-***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
-  Insert Table
+	<img width="300" alt="Query_1_results" src="https://github.com/emcaboles/global-sales/assets/160221619/b179062c-6474-4266-984f-0e548b2ce296">
 </details>
--->
+
 
  ```sql
 SELECT * FROM categories
 LIMIT 10;
 ```
-<!---
-***INSERT RESULTS USING  //DETAILS//***
 <details>
   <summary>Results</summary>
-  Insert Table
+	<img width="500" alt="Query_2_categories" src="https://github.com/emcaboles/global-sales/assets/160221619/cf342b52-19b2-4a56-aeb1-bb73502a8a9d">
 </details>
---->
 
 ```sql
 SELECT * FROM customers
@@ -103,7 +101,7 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+	<img width="1500" alt="Query_2_customers" src="https://github.com/emcaboles/global-sales/assets/160221619/136df5b7-c69d-4be6-a1eb-596945961771">
 </details>
 
 ```sql
@@ -112,7 +110,7 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+	<img width="800" alt="Query_2_employees" src="https://github.com/emcaboles/global-sales/assets/160221619/13d71b0e-2d39-403d-8452-4244cdbd271a">
 </details>
 
 ```sql
@@ -121,7 +119,8 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="300" alt="Query_2_orders" src="https://github.com/emcaboles/global-sales/assets/160221619/0c549fcf-b09a-404b-9fd4-1b1b4fc2ccb3">
+
 </details>
 
 ```sql
@@ -130,7 +129,7 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="300" alt="Query_2_ordersdetails" src="https://github.com/emcaboles/global-sales/assets/160221619/ef38ef2e-c14b-41af-96ac-e9ff01254c69">
 </details>
 
 ```sql
@@ -139,7 +138,7 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="700" alt="Query_2_products" src="https://github.com/emcaboles/global-sales/assets/160221619/383e2cee-9025-4680-84ad-c6d62b8af055">
 </details>
 
 ```sql
@@ -148,7 +147,7 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="400" alt="Query_2_shippers" src="https://github.com/emcaboles/global-sales/assets/160221619/ae480d46-79fc-44e1-880d-bad63f8c60e9">
 </details>
 
 ```sql
@@ -157,11 +156,11 @@ LIMIT 10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="1034" alt="Query_2_suppliers" src="https://github.com/emcaboles/global-sales/assets/160221619/f7bf86fa-6a19-44b5-8944-83c75970158c">
 </details>
 
 ### Requested Data Queries
-To save space, results for the next queries are truncated to show only the first 10 results, unless otherwise shown.
+The following queries answer the Sales Department's request. Some results have been truncated to save space.
 
 1.  Find the top 5 countries with the highest total revenue from online orders.
 ```sql
@@ -181,10 +180,10 @@ LIMIT 5;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="250" alt="Query_3_results" src="https://github.com/emcaboles/global-sales/assets/160221619/75ccbfe9-b214-4cb2-849b-b4751ca1af33">
 </details>
 
-3.  List the sales per region (North America, South America, Europe).
+2.  List the sales per region (North America, South America, Europe).
 ```sql
 WITH CustomerPerContinent AS (
 	SELECT
@@ -207,7 +206,7 @@ GROUP BY Continent;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="400" alt="region_sales" src="https://github.com/emcaboles/global-sales/assets/160221619/d199daa9-4c1e-43f3-92f1-eeaa05afd397">
 </details>
 
 3.  List the products that have been ordered in every month of the dataset.
@@ -230,7 +229,7 @@ HAVING(COUNT(Order_Date)) = (SELECT  COUNT(DISTINCT(Order_Date)) FROM Product_Or
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="300" alt="Query_5_results" src="https://github.com/emcaboles/global-sales/assets/160221619/ae6f5a7b-0038-47cc-a505-0b5782b6925e">
 </details>
 
 4.  List all products contained in bottles or jars or products that are sauces or syrup their supplier and their location.
@@ -251,7 +250,7 @@ ORDER BY Country ASC;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="1200" alt="Query_12_results" src="https://github.com/emcaboles/global-sales/assets/160221619/0e83d46d-9025-4e48-bb1e-af771d11de8b">
 </details>
 
 5.  Identify the top 10 products with the highest profit margin.
@@ -271,7 +270,8 @@ LIMIT  10;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="400" alt="profit_margin" src="https://github.com/emcaboles/global-sales/assets/160221619/9ad8fc00-fe9b-4464-8a7e-09c6456a0ab2">
+
 </details>
 
 6.  Calculate the average order value for each product category.
@@ -296,7 +296,7 @@ ORDER BY Avg_Order_Price ASC;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="450" alt="Query_4_results" src="https://github.com/emcaboles/global-sales/assets/160221619/abd57462-bba5-466f-9e4f-9720eb6d7647">
 </details>
 
 7.  Identify the customer ID's who have made purchases on consecutive days.
@@ -321,7 +321,7 @@ WHERE Diff_Order_Times =  1;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="400" alt="Query_6_results" src="https://github.com/emcaboles/global-sales/assets/160221619/97a7634a-47c8-4707-ae04-4de4666eefae">
 </details>
 
 8.  Calculate the average number of days between a customer's first and second order.
@@ -345,7 +345,7 @@ WHERE Rank_Orders = 2;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="250" alt="Query_7_results" src="https://github.com/emcaboles/global-sales/assets/160221619/0494616f-55c7-4b19-bb72-c71a3f2db868">
 </details>
 
 9.  Identify the customers who have made purchases in every product category.
@@ -363,7 +363,7 @@ HAVING  COUNT(DISTINCT(CategoryID)) = (SELECT COUNT(*) FROM categories);
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="400" alt="Query_8_results" src="https://github.com/emcaboles/global-sales/assets/160221619/cb314275-c7a0-45cc-9f61-440706d4dcec">
 </details>
 
 10.  Find the average number of items per order for each customer.
@@ -391,7 +391,7 @@ ORDER BY Items ASC;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="500" alt="Query_9_results" src="https://github.com/emcaboles/global-sales/assets/160221619/e1b682f3-6aab-4f17-9e41-e31e609843b0">
 </details>
 
 11.  List the products that have been ordered by customers from at least 5 different countries.
@@ -409,7 +409,7 @@ ORDER BY Count_Country ASC;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+  <img width="350" alt="Query_10_results" src="https://github.com/emcaboles/global-sales/assets/160221619/91d107c4-ba17-4c34-9170-6ec029697513">
 </details>
 
 12.  List the sales of each employee for the months of Aug and Sep 2023 from highest to lowest.
@@ -428,7 +428,8 @@ ORDER BY Sales DESC;
 ```
 <details>
   <summary>Results</summary>
-  Insert Table
+ <img width="400" alt="Query_11_results" src="https://github.com/emcaboles/global-sales/assets/160221619/e654ad33-3c01-4c63-9c47-4a4a6866897e">
+
 </details>
 
 ## Data Cleaning and Visualization (Power Query, Power BI)
@@ -472,12 +473,14 @@ Number.From(DateTime.LocalNow()) - Number.From(Source),
 #### Transformation
 For the 2024 sales data, the *orders* and *ordersdetails* excel files were loaded to Power Query and then appended with their database table counterparts.
 
-***INSERT PICTURE OF APPENDED QUERIES***
+![append_1](https://github.com/emcaboles/global-sales/assets/160221619/51038f93-9e59-484d-ba45-cf1b6d609c3f)
+
+![append_2](https://github.com/emcaboles/global-sales/assets/160221619/dff07be6-3019-4f00-a0f3-f0f8d93f7420)
 
 #### Loading
 After transforming the data and making sure that all columns have proper data types, the tables were loaded to Power BI and connected in the Model View.
 
-***INSERT MODEL WITHOUT SLICER***
+![model_1](https://github.com/emcaboles/global-sales/assets/160221619/c58df8d7-5925-4114-8e7d-46791b9ec6f8)
 
 ### Power BI Report
 Since the Sales Department is interested in checking the YTD, QTD, MTD Sales, a DAX table was created to filter the rolling calendar table by YTD, QTD, and MTD.
@@ -527,11 +530,18 @@ VAR Result=
 RETURN Result
 ```
 After creating the period DAX table, it was connected to the rolling calendar table. Hence, the final model is illustrated below.
-***INSERT FINAL MODEL***
+
+![model_2](https://github.com/emcaboles/global-sales/assets/160221619/d6bb92f9-aa67-4c6d-b8ff-d3b0509feff6)
+
 
 Three pages were created for the Sales Department's dashboard. The first page was dedicated to provide an overview of the business. The second page displayed the Sales Agents' Metrics while the third page showed the possibile outliers in the data using Power BI's built-in Anomaly Detection feature.
 
-***INSERT SCREENSHOTS OF DASHBOARD***
+![Sales_Page](https://github.com/emcaboles/global-sales/assets/160221619/dfee1a65-f80c-4643-9393-97008433b99f)
+
+![Agent_Page](https://github.com/emcaboles/global-sales/assets/160221619/7643502b-eb4c-4626-9e4e-6debfe1a76c8)
+
+![DA_Page](https://github.com/emcaboles/global-sales/assets/160221619/7e504896-fc40-4b19-8463-3269284b808c)
+
 
 For the complete dashboard and DAX formulas used, please refer to the attached pbix file. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
 
@@ -540,17 +550,27 @@ For the complete dashboard and DAX formulas used, please refer to the attached p
 
 Power BI detected 12 possible outliers based on the daily expected sales value.
 
+![image](https://github.com/emcaboles/global-sales/assets/160221619/eac9ff5e-05e9-4754-a82d-7a5b0268985e)
+
 To allow users to check as to why certain points were considered outliers, product and customer tables were placed in the report so that users can drill down the contribution of each product and customer in terms of sales.
 
 For example, selecting the first anomaly point which occurred on the 8th of October, it can be seen product *Thüringer Rostbratwurst* accounted for 43.89% of the daily sales and that orders and sales for this product increased by 82% and 86%, respectively, compared to previous dates.
 
+![bratwurts_1](https://github.com/emcaboles/global-sales/assets/160221619/14fdc498-45c8-4f2f-be9e-69779f56d777)
+
 Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the products, suggesting that there may be an increased demand for the it. This is also supported by *Thüringer Rostbratwurst*'s  increasing daily sales trend, which is illustrated in the same page or via drill-through to the Sales Page.
+
+![bratwurts_2](https://github.com/emcaboles/global-sales/assets/160221619/a81686c7-bf58-446f-9514-b3ff4bea4df5)
+
+![bratwurts_3](https://github.com/emcaboles/global-sales/assets/160221619/a88a0c29-3faa-479e-b300-8dc48fa0faae)
+
+![bratwurts_4](https://github.com/emcaboles/global-sales/assets/160221619/a1b7b8c5-bcfc-4db4-bbe7-2dc4c54f3fba)
 
 However, it is worth noting that if there were no marketing campaigns made to push *Thüringer Rostbratwurst* to be sold to customers, there may be a need to check the sales invoices and records of customers who suddenly bought items they have never purchased before.
 
 Finally, to aid the Sales Department in creating an overview of the daily sales, a dynamic *Sales and Product Analysis* section was added in the report page.
 
-***INSERT SCREENSHOT OF DYNAMIC TEXT BOX***
+![bratwurts_5](https://github.com/emcaboles/global-sales/assets/160221619/b18d6f97-91b4-4b28-b082-e07f8877d3c4)
 <!---
 
 ## References
