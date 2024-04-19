@@ -1,0 +1,441 @@
+---Measures used for Global Online Sales Store Dashboard---
+---- MODEL MEASURES BEGIN ----
+MEASURE _MeasureTable[%ChangeOrders] = 
+DIVIDE(
+    ROUND([TotalOrderQuantity]-[OrderQuantityAverage_Moving],0),
+    ROUND([OrderQuantityAverage_Moving],0),
+    0
+) 
+
+MEASURE _MeasureTable[%ChangeSales] = 
+DIVIDE(
+    [TotalSales]-[TotalSalesAvg_Moving],
+    [TotalSalesAvg_Moving],
+    BLANK()
+)
+
+MEASURE _MeasureTable[%PurchaseContribution_Customer] = 
+DIVIDE(
+    [TotalSales],
+    [AllPurchaseCustomer],
+    0
+)
+
+MEASURE _MeasureTable[%SalesContribution_Product] = 
+DIVIDE(
+    [TotalSales],
+    [AllSalesProduct],
+    0
+)
+
+MEASURE _MeasureTable[AgentCount] = DISTINCTCOUNTNOBLANK(fOrders_app[EmployeeID])
+
+MEASURE _MeasureTable[AllOrders] = 
+CALCULATE(
+    [TotalOrders],
+    ALL(fOrdersdetails_app)
+)
+
+MEASURE _MeasureTable[AllPurchaseCustomer] = 
+CALCULATE(
+    [TotalSales],
+    ALL(dCustomers)
+    )
+
+MEASURE _MeasureTable[AllSalesProduct] = 
+CALCULATE(
+    [TotalSales],
+    ALL(dProducts)
+)
+
+MEASURE _MeasureTable[CountDatesWithOrder_Moving] = 
+COUNTROWS(
+    FILTER(
+        ALL(_RollingCalendar),
+            [TotalOrderQuantity] > 0 &&
+            _RollingCalendar[Date] < MAX(_RollingCalendar[Date])
+    )
+)
+
+MEASURE _MeasureTable[CustomersPerAgent] = 
+DIVIDE(
+    DISTINCTCOUNTNOBLANK(dCustomers[CustomerID]),
+    [AgentCount],
+    0
+)
+
+MEASURE _MeasureTable[CustomersPerAgentPrev7days] = 
+CALCULATE(
+    [CustomersPerAgent],
+    DATEADD(_RollingCalendar[Date],-7,DAY)
+)
+
+MEASURE _MeasureTable[CustomersPerAgentWOWChange] = 
+DIVIDE(
+    [CustomersPerAgent]-[CustomersPerAgentPrev7days],
+    [CustomersPerAgentPrev7days],
+    0
+)
+
+MEASURE _MeasureTable[OrderQuantityAverage_Moving] = 
+VAR OrdersMovAvg =
+DIVIDE(
+    CALCULATE(
+        [TotalOrderQuantity],
+        //Filters all dates with Order and those before the selected date
+        FILTER(
+            ALL(_RollingCalendar),
+            [TotalOrderQuantity] > 0 &&
+            _RollingCalendar[Date] < MAX(_RollingCalendar[Date])
+        )
+    ),
+    [CountDatesWithOrder_Moving],
+    0
+)
+
+RETURN IF(ISBLANK(OrdersMovAvg),0,OrdersMovAvg)
+
+MEASURE _MeasureTable[OrdersMTD] = 
+VAR OrdersMTD =
+CALCULATE(
+    [TotalOrders],
+    DATESMTD(_RollingCalendar[Date])
+)
+
+RETURN IF(ISBLANK(OrdersMTD), 0, OrdersMTD)
+
+MEASURE _MeasureTable[OrdersPerAgent] = 
+DIVIDE(
+    [TotalOrders],
+    [AgentCount],
+    0
+)
+
+MEASURE _MeasureTable[OrdersPerAgentPrev7days] = 
+CALCULATE(
+    [OrdersPerAgent],
+    DATEADD(_RollingCalendar[Date],-7,DAY)
+)
+
+MEASURE _MeasureTable[OrdersPerAgentWOWChange] = 
+DIVIDE(
+    [OrdersPerAgent]-[OrdersPerAgentPrev7days],
+    [OrdersPerAgentPrev7days],
+    0
+)
+
+MEASURE _MeasureTable[OrdersSamePeriodLastMonth] = 
+VAR DateToday = TODAY()
+VAR DateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,DAY(DATETODAY))
+VAR StartDateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,1)
+
+VAR LastMonthOrders =
+    CALCULATE(
+        [TotalOrders],
+        DATESBETWEEN(
+            _RollingCalendar[Date],
+            StartDateLastMonth,
+            DateLastMonth
+        )
+)
+
+RETURN IF(ISBLANK(LastMonthOrders),0,LastMonthOrders)
+
+MEASURE _MeasureTable[ProfitMTD] = 
+VAR ProfitMTD =
+CALCULATE(
+    [TotalProfit],
+    DATESMTD(_RollingCalendar[Date])
+)
+
+RETURN IF(ISBLANK(ProfitMTD), 0, ProfitMTD)
+
+MEASURE _MeasureTable[ProfitSamePeriodLastMonth] = 
+VAR DateToday = TODAY()
+VAR DateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,DAY(DATETODAY))
+VAR StartDateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,1)
+
+VAR LastMonthProfit =
+    CALCULATE(
+        [TotalSales],
+        DATESBETWEEN(
+            _RollingCalendar[Date],
+            StartDateLastMonth,
+            DateLastMonth
+        )
+)
+
+RETURN IF(ISBLANK(LastMonthProfit),0,LastMonthProfit)
+
+MEASURE _MeasureTable[SalesMTD] = 
+VAR SalesMTD =
+CALCULATE(
+    [TotalSales],
+    DATESMTD(_RollingCalendar[Date])
+)
+
+RETURN IF(ISBLANK(SalesMTD), 0, SalesMTD)
+
+MEASURE _MeasureTable[SalesPerAgent] = 
+DIVIDE(
+    [TotalSales],
+    [AgentCount],
+    0)
+
+MEASURE _MeasureTable[SalesPerAgentPrev7days] = 
+CALCULATE(
+    [SalesPerAgent],
+    DATEADD(_RollingCalendar[Date],-7,DAY)
+)
+
+MEASURE _MeasureTable[SalesPerAgentWOWChange] = 
+DIVIDE(
+    [SalesPerAgent]-[SalesPerAgentPrev7days],
+    [SalesPerAgentPrev7days],
+    0
+)
+
+MEASURE _MeasureTable[SalesPrev7days] = 
+CALCULATE(
+    [TotalSales],
+    DATEADD(_RollingCalendar[Date],-7,DAY)
+)
+MEASURE _MeasureTable[SalesSamePeriodLastMonth] = 
+VAR DateToday = TODAY()
+VAR DateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,DAY(DATETODAY))
+VAR StartDateLastMonth = DATE(YEAR(DateToday),MONTH(DateToday)-1,1)
+
+VAR LastMonthSales =
+    CALCULATE(
+        [TotalSales],
+        DATESBETWEEN(
+            _RollingCalendar[Date],
+            StartDateLastMonth,
+            DateLastMonth
+        )
+)
+
+RETURN IF(ISBLANK(LastMonthSales),0,LastMonthSales)
+
+MEASURE _MeasureTable[SalesWOWChange] = 
+DIVIDE(
+        [TotalSales]-[SalesPrev7days],
+        [SalesPrev7days],
+        0)
+MEASURE _MeasureTable[text_%PurchaseContriofTopCustomer] = 
+VAR TopCustomer = 
+    TOPN(
+        1,
+        VALUES(dCustomers[CustomerName]),
+        [%PurchaseContribution_Customer]
+    )
+
+VAR PercPurchaseTopCustomer =
+    CALCULATE(
+        [%PurchaseContribution_Customer],
+        FILTER(
+            dCustomers,
+            dCustomers[CustomerName] = TopCustomer
+        )
+)
+
+RETURN PercPurchaseTopCustomer
+
+MEASURE _MeasureTable[text_%SalesContriofTopProduct] = 
+VAR TopProduct = 
+    TOPN(
+        1,
+        VALUES(dProducts[ProductID]),
+        [%SalesContribution_Product]
+    )
+
+VAR PercSalesTopProduct =
+    CALCULATE(
+        [%SalesContribution_Product],
+        FILTER(
+            dProducts,
+            dProducts[ProductID] = TopProduct
+        )
+)
+
+RETURN PercSalesTopProduct
+
+MEASURE _MeasureTable[text_Header] = 
+VAR SelectDate = 
+IF(
+    HASONEVALUE(_RollingCalendar[Date]),
+    SELECTEDVALUE(_RollingCalendar[Date]),
+    TODAY()-1
+)
+
+VAR txtHeader = "Sales and Product Analysis" & UNICHAR(10) & "(" & FORMAT(SelectDate, "Long Date") & ")"
+
+RETURN
+IF(
+    HASONEVALUE(_RollingCalendar[Date]),
+    txtHeader,
+    "Overall " & txtHeader
+    )
+MEASURE _MeasureTable[text_OrdersOfTopProduct] = 
+VAR TopProduct = 
+    TOPN(
+        1,
+        VALUES(dProducts[ProductID]),
+        [TotalOrderQuantity]
+    )
+
+VAR OrderTopProduct =
+    CALCULATE(
+        [TotalOrderQuantity],
+        FILTER(
+            dProducts,
+            dProducts[ProductID] = TopProduct
+        )
+)
+
+RETURN OrderTopProduct
+
+MEASURE _MeasureTable[text_PurchaseOfTopCustomer] = 
+VAR TopCustomer = 
+    TOPN(
+        1,
+        VALUES(dCustomers[CustomerName]),
+        [TotalSales]
+    )
+
+VAR PSalesTopCustomer =
+    CALCULATE(
+        [TotalSales],
+        FILTER(
+            dCustomers,
+            dCustomers[CustomerName] = TopCustomer
+        )
+)
+
+RETURN PSalesTopCustomer
+
+MEASURE _MeasureTable[text_SalesOfTopProduct] = 
+VAR TopProduct = 
+    TOPN(
+        1,
+        VALUES(dProducts[ProductID]),
+        [TotalSales]
+    )
+
+VAR PSalesTopProduct =
+    CALCULATE(
+        [TotalSales],
+        FILTER(
+            dProducts,
+            dProducts[ProductID] = TopProduct
+        )
+)
+
+RETURN PSalesTopProduct
+
+MEASURE _MeasureTable[text_SelectedDate] = 
+VAR SelectDate = 
+FORMAT(
+    IF(
+        HASONEVALUE(_RollingCalendar[Date]),
+        SELECTEDVALUE(_RollingCalendar[Date]),
+        TODAY()-1
+    ),
+    "Medium Date"
+)
+RETURN
+IF(
+    HASONEVALUE(_RollingCalendar[Date]),
+    "For " & SelectDate,
+    "As of " & SelectDate
+)
+
+MEASURE _MeasureTable[text_TopCustomerBySales] = 
+TOPN(
+    1,
+    VALUES(dCustomers[CustomerName]),
+    [%PurchaseContribution_Customer]
+)
+
+MEASURE _MeasureTable[text_TopProductByOrders] = 
+TOPN(
+    1,
+    VALUES(dProducts[ProductName]),
+    [TotalOrderQuantity]
+)
+
+MEASURE _MeasureTable[text_TopProductBySales] = 
+TOPN(
+    1,
+    VALUES(dProducts[ProductName]),
+    [%SalesContribution_Product]
+)
+
+MEASURE _MeasureTable[TopAgent] = 
+TOPN(
+    1,
+    VALUES(dEmployees[FullName]),
+    [TotalSales]
+)
+
+MEASURE _MeasureTable[TotalCost] = 
+SUMX(fOrdersdetails_app,
+    fOrdersdetails_app[Quantity]
+    * RELATED(dProducts[Cost])
+)
+
+MEASURE _MeasureTable[TotalOrderQuantity] = 
+SUM(fOrdersdetails_app[Quantity])
+
+MEASURE _MeasureTable[TotalOrders] = 
+DISTINCTCOUNT(fOrdersdetails_app[OrderID])
+
+MEASURE _MeasureTable[TotalProfit] = 
+[TotalSales]-[TotalCost]
+
+MEASURE _MeasureTable[TotalSales] = 
+SUMX(
+    fOrdersdetails_app,
+    fOrdersdetails_app[Quantity]
+    * RELATED(dProducts[Price])
+)
+
+MEASURE _MeasureTable[TotalSalesAvg_Moving] = 
+VAR SalesMovAvg = 
+DIVIDE(
+    CALCULATE(
+        [TotalSales],
+        FILTER(
+            ALL(_RollingCalendar),
+            [TotalOrderQuantity] > 0 &&
+            _RollingCalendar[Date] < MAX(_RollingCalendar[Date])
+        )
+    ),
+    [CountDatesWithOrder_Moving],
+    0
+)
+
+RETURN IF(ISBLANK(SalesMovAvg),0, SalesMovAvg)
+
+MEASURE _MeasureTable[UniqueProdPerAgent] = 
+DIVIDE(
+    DISTINCTCOUNT(dProducts[ProductID]),
+    [AgentCount],
+    0
+)
+
+MEASURE _MeasureTable[UniqueProdPerAgentPrev7days] = 
+CALCULATE(
+    [UniqueProdPerAgent],
+    DATEADD(_RollingCalendar[Date],-7,DAY)
+)
+
+MEASURE _MeasureTable[UniqueProdPerAgentWOWChange] = 
+DIVIDE(
+    [UniqueProdPerAgent]-[UniqueProdPerAgentPrev7days],
+    [UniqueProdPerAgent],
+    0
+)
+
+---- MODEL MEASURES END ----
+
