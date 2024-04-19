@@ -1,6 +1,4 @@
 
-
-
 # Global Online Store Sales Analysis
 ## Quick links
  [Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
@@ -551,7 +549,7 @@ DAX measures were used to calculate for the metrics and KPI's requested by the s
 ![image](https://github.com/emcaboles/global-sales/assets/160221619/6532c4cf-caa0-45d3-9f65-3d8162ef1985)
 
 
-For the complete dashboard and DAX formulas used, please refer to the attached pbix file and text file, respectively. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
+For the complete dashboard and DAX formulas used, please refer to the attached pbix and text files, respectively. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
 
 ## Data Analysis
 [back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
