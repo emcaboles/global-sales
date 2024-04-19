@@ -1,5 +1,6 @@
 
 
+
 # Global Online Store Sales Analysis
 ## Quick links
  [Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9) \
@@ -14,7 +15,8 @@
 <!--+ Extras-->
 
 ## Scenario
-<a href="https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis">back to top</a>
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
+
 
 You are a data analyst at a global online store. The sales department needs your help in creating a report regarding the 2023 sales and the sales manager asked you to get the following data from you company's database using SQL.
 
@@ -160,6 +162,8 @@ LIMIT 10;
 </details>
 
 ### Requested Data Queries
+[back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
+
 The following queries answer the Sales Department's request. Some results have been truncated to save space.
 
 1.  Find the top 5 countries with the highest total revenue from online orders.
@@ -542,8 +546,12 @@ Three pages were created for the Sales Department's dashboard. The first page wa
 
 ![DA_Page](https://github.com/emcaboles/global-sales/assets/160221619/7e504896-fc40-4b19-8463-3269284b808c)
 
+DAX measures were used to calculate for the metrics and KPI's requested by the sales department.
 
-For the complete dashboard and DAX formulas used, please refer to the attached pbix file. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
+![image](https://github.com/emcaboles/global-sales/assets/160221619/6532c4cf-caa0-45d3-9f65-3d8162ef1985)
+
+
+For the complete dashboard and DAX formulas used, please refer to the attached pbix file and text file, respectively. Alternatively, the dashboard can be accessed via this [link](https://app.powerbi.com/view?r=eyJrIjoiMDlkYTMzZTgtMjFmZi00NGFkLWJjMGQtNzQ4ZmY0MjI0NmM4IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9).
 
 ## Data Analysis
 [back to top](https://github.com/emcaboles/global-sales?tab=readme-ov-file#global-online-store-sales-analysis)
@@ -554,11 +562,11 @@ Power BI detected 12 possible outliers based on the daily expected sales value.
 
 To allow users to check as to why certain points were considered outliers, product and customer tables were placed in the report so that users can drill down the contribution of each product and customer in terms of sales.
 
-For example, selecting the first anomaly point which occurred on the 8th of October, it can be seen product *Thüringer Rostbratwurst* accounted for 43.89% of the daily sales and that orders and sales for this product increased by 82% and 86%, respectively, compared to previous dates.
+For example, selecting the first anomaly point which occurred on the 8th of October, it can be seen product *Thüringer Rostbratwurst* accounted for 43.89% of the daily sales and that units sold and sales for this product increased by 82% and 86%, respectively, compared to previous dates.
 
 ![bratwurts_1](https://github.com/emcaboles/global-sales/assets/160221619/14fdc498-45c8-4f2f-be9e-69779f56d777)
 
-Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the products, suggesting that there may be an increased demand for the it. This is also supported by *Thüringer Rostbratwurst*'s  increasing daily sales trend, which is illustrated in the same page or via drill-through to the Sales Page.
+Furthermore, cross-filtering the customer table, it can be seen that customer *Save-a-lot Markets*, who has never bought *Thüringer Rostbratwurst* before, bought 31 units of the products, suggesting that there may be an increased demand for it. This is also supported by *Thüringer Rostbratwurst*'s  increasing daily sales trend, which is illustrated in the same page or via drill-through to the Sales Page.
 
 ![bratwurts_2](https://github.com/emcaboles/global-sales/assets/160221619/a81686c7-bf58-446f-9514-b3ff4bea4df5)
 
