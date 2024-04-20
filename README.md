@@ -8,8 +8,8 @@
 ## Table of Contents
 + [Scenario](https://github.com/emcaboles/global-sales?tab=readme-ov-file#scenario)
 + [Data Extraction (SQL)](https://github.com/emcaboles/global-sales?tab=readme-ov-file#data-extraction-sql)
-+  [ETL and Visualization (Power Query, Power BI)](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#etl-and-visualization-power-query-power-bi)
-+ [Data Analysis]([https://github.com/emcaboles/global-sales/blob/main/README.md#data-analysis])
++ [ETL and Visualization (Power Query, Power BI)](https://github.com/emcaboles/global-sales/tree/main?tab=readme-ov-file#etl-and-visualization-power-query-power-bi)
++ [Data Analysis](https://github.com/emcaboles)
 <!--+ Extras-->
 
 ## Scenario
